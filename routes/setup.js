@@ -16,7 +16,7 @@ var async = require('async');
 var connection = require('../modules/dbconnection');
 
 var transporter = nodemailer.createTransport({
-    service: 'Gmail',
+    service: '',
     auth: {
         user: '',
         pass: ''

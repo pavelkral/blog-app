@@ -116,8 +116,8 @@
         },
         data () {
             return {
-                email: 'devlog@devlog.cz',
-                pass: 'devlog@devlog.cz',
+                email: '',
+                pass: '',
                 error: false
             }
         },

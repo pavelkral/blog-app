@@ -2,7 +2,7 @@
   "name": "vue-app",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Pavel Kral <frostxx@tiscali.cz>",
+  "author": "Pavel Kral",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
