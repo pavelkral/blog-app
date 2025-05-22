@@ -1,0 +1,48 @@
+<% include ../partials/header %>
+<!-- Page Content -->
+<div class="container">
+
+<!-- Page Header -->
+	<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Some Public Projects and Demos
+			<small></small>
+		</h1>
+	</div>
+	</div>
+	<div class="row">
+	<% var counter = 0;%>
+
+	<% for (var index in projects){ %>
+		<div class="col-md-4 portfolio-item">
+		<a href="#">
+		<img class="img-responsive" style="border:1px solid silver;" src="/public/img/app/<%= projects[index].pro_imgurl %>" alt="">
+		</a>
+		<h3>
+		<a href="#"><%= projects[index].pro_name.substring(0,40) %></a>
+		</h3>
+		<p><%= projects[index].pro_desc.substring(0,150) %></p>
+		</div>
+		<% if (counter == 2){ %>
+		</div><hr><div class="row">	
+		<% } %>
+		<% if(counter == 2 ){ counter = 0; } else{ counter++; } %>
+	<% }; %>
+	</div>
+<!-- /.row -->
+<div class="row text-center">
+	<div class="col-lg-12">
+		 <ul class="pagination">
+            <%- str_prevlink %>
+           <% arr_links.forEach(function(link){ %>
+              <%- link %>
+            <% }) %>
+            <%- str_nextlink %>
+        </ul>
+	</div>
+</div>
+<!-- /.row -->
+<hr>
+</div>
+<% include ../partials/footer %>
+	

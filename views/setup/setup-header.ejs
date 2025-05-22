@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title><%= title %></title>
+    <script type="text/javascript" src="/public/lib/jquery/jquery.min.js"></script>
+    <link href = "/public/lib/bootstrap/ts/bootstrap.min.css" rel = "stylesheet">
+    <link href = "/public/css/main.css" rel = "stylesheet">
+</head>
+<body>
+<div class="container">
+<div class="row" style="margin-top:5px;padding:0px">
+<div class="well well-sm text-left">
+  <div class="table-responsive" style="margin:0px;border:0px solid black;padding:0px;">          
+  <table class="table" style="margin:0px;padding:0px;border:0px;">   
+    <thead>
+      <tr>
+        <td style="margin:0px;padding:0px">
+          <h3 style="margin:0px;padding:0px" class="text-lef">SCms</h3>
+        </td>
+        <td class="text-right" style="margin:0px;padding:0px">
+          <div style="float:right;margin-top:5px;" class="">
+            Loged:<strong>
+            <% if(typeof(user) !== 'undefined') {%><%= user.username %><% } %> </strong>
+            <a href="/setup/signout" title="sign out" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-log-out"></i>  Sign out</a>
+          </div>    
+        </td>
+      </tr>      
+    </thead>
+  </table>
+  </div>   
+</div>   
+</div>
+</div>
+<div class="container">
+<div class="row">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">   
+    <div>
+      <ul class="nav navbar-nav">      
+        <li class="active"><a href="/setup/" title="upload">Dashboard</a></li>
+        <li class="active"><a href="/setup/articles/" title="upload">Articles</a></li>
+        <li class="active"><a href="/setup/projects/" title="upload">Projects</a></li>        
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+</div>
+

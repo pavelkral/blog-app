@@ -1,0 +1,78 @@
+
+<% include setup-header %>
+<div class="container">
+<div class="row">
+
+<div class="panel panel-default" >
+
+<div class="panel-body" style="margin:2px;padding:2px">
+
+
+<div class="col-sm-6" style="margin:0px;padding:0px">
+<div class="panel panel-default" style="border:0px solid silver;margin:2px;">
+<div class="panel-heading" style="color:#F0F0F0;background-color:#222222;"><strong>Article</strong></div>
+<div class="panel-body" style="border:1px solid silver;">
+<div class="table-responsive" style="margin-top:0px;">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#id</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>UserId</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for (var index in articles){ %>
+         <tr>
+                <td><%= articles[index].art_id %></td>
+                <td><%= articles[index].art_name.toString().substring(0,20) %></td>
+                <td><%= articles[index].art_date.toString().substring(0,15) %></td>
+                <td><%= articles[index].art_user_id %></td>
+         </tr>
+        <% }; %>
+    </tbody>
+  </table>
+</div>   
+</div></div>
+</div>
+
+<div class="col-sm-6" style="margin:0px;padding:0px">
+<div class="panel panel-default" style="border:0px solid silver;margin:2px;">
+<div class="panel-heading" style="color:#F0F0F0;background-color:#222222;"><strong>Projects</strong></div>
+<div class="panel-body" style="border:1px solid silver;">
+
+<div class="table-responsive" style="margin-top:0px;">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#id</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>UserId</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for (var index in projects){ %>
+         <tr>
+                <td><%= projects[index].pro_id %></td>
+                <td><%= projects[index].pro_name.toString().substring(0,40) %></td>
+                <td><%= projects[index].pro_datestart.toString().substring(0,15) %></td>
+                <td><%= projects[index].pro_leader_id %></td>
+         </tr>
+        <% }; %>
+    </tbody>
+  </table>
+</div>  
+
+
+
+</div></div>
+</div>
+  
+</div>
+</div>
+
+</div>
+</div>
+<% include setup-footer %>

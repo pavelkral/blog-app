@@ -1,0 +1,85 @@
+<% include ../partials/header %>
+
+<div class="container">
+
+<div class="row">
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+    <!-- First Blog Post --> 
+    <% for (var index in articles){ %>
+        
+        <div class="col-md-8 margtop">
+        <h3 style="margin:0px;">
+        <%= articles[index].art_name %>
+        </h3></div>
+        <div class="col-md-4 margtop">
+        <img class="img-responsive" src="/public/img/uploaded/<%= articles[index].art_imgurl %>" alt="" style="width:200px;">
+        </div>
+
+        <p class="lead">
+        by <a href=""><%= articles[index].user_name %></a>
+        </p>
+        <p><span class="glyphicon glyphicon-time"></span> Posted on <%= articles[index].art_date.toString().substring(0,15) %></p>
+        <p><%= articles[index].art_header %></p>
+
+          
+    <% }; %>       
+
+<hr>
+
+    </div>
+<script type="text/javascript">
+    function search(){
+        var searchtext=document.getElementById("searchtext");
+        window.location.href="/search/" + searchtext.value + "/" ;
+    }
+  
+    
+</script>
+    <div class="col-md-4">
+    <!-- Blog Search Well -->
+        <div class="well">
+        <h4>Blog Search</h4>
+            <form method="get">
+            <div class="input-group">
+            <input type="text" class="form-control" name="searchtext" id="searchtext">
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="button" onclick="search();"o>
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+            </span>
+      
+            </div>
+
+            </form>
+        <!-- /.input-group -->
+        </div>
+
+        <!-- Blog Categories Well -->
+        <div class="well">
+        <h4>Blog Categories</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <ul class="list-unstyled">
+                <% for (var index in subsection){ %>
+                <li><a href="/section/<%= subsection[index].subsc_url %>/"><%= subsection[index].subsc_name %></a></li>
+                <% }; %>
+
+                </ul>
+            </div>
+             <!-- /.col-lg-6 -->
+          
+        <!-- /.col-lg-6 -->
+        </div>
+        </div>
+
+        <!-- Side Widget Well -->
+     
+
+    </div>
+
+</div>
+</div>
+
+<% include ../partials/footer %>
+	

@@ -1,0 +1,183 @@
+<% include setup-header %>
+<div class="container">
+<div class="row">
+<div class="panel panel-default">
+<div class="panel-heading"><strong>Edit Article</strong></div>
+<div class="panel-body">
+<script type="text/javascript" src="/public/lib/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
+<script type="text/javascript" src="/public/lib/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+tinyMCE.init({
+    valid_elements : "@[id|class|style|title|dir<ltr?rtl|lang|xml::lang|onclick|ondblclick|"
+    + "onmousedown|onmouseup|onmouseover|onmousemove|onmouseout|onkeypress|"
+    + "onkeydown|onkeyup],a[rel|rev|charset|hreflang|tabindex|accesskey|type|"
+    + "name|href|target=_blank|title|class|onfocus|onblur],strong/b,em/i,strike,u,"
+    + "#p,-ol[type|compact],-ul[type|compact],-li,br,img[longdesc|usemap|"
+    + "src|border|alt=|title|hspace|vspace|width|height|align],-sub,-sup,"
+    + "-blockquote,-table[border=0|cellspacing|cellpadding|width|frame|rules|"
+    + "height|align|summary|bgcolor|background|bordercolor],-tr[rowspan|width|"
+    + "height|align|valign|bgcolor|background|bordercolor],tbody,thead,tfoot,"
+    + "#td[colspan|rowspan|width|height|align|valign|bgcolor|background|bordercolor"
+    + "|scope],#th[colspan|rowspan|width|height|align|valign|scope],caption,-div,"
+    + "-span,-code,-pre,address,-h1,-h2,-h3,-h4,-h5,-h6,hr[size|noshade],-font[face"
+    + "|size|color],dd,dl,dt,cite,abbr,acronym,del[datetime|cite],ins[datetime|cite],"
+    + "object[classid|width|height|codebase|*],param[name|value|_value],embed[type|width"
+    + "|height|src|*],script[src|type],map[name],area[shape|coords|href|alt|target],bdo,"
+    + "button,col[align|char|charoff|span|valign|width],colgroup[align|char|charoff|span|"
+    + "valign|width],dfn,fieldset,form[action|accept|accept-charset|enctype|method],"
+    + "input[accept|alt|checked|disabled|maxlength|name|readonly|size|src|type|value],"
+    + "kbd,label[for],legend,noscript,optgroup[label|disabled],option[disabled|label|selected|value],"
+    + "q[cite],samp,select[disabled|multiple|name|size],small,"
+    + "textarea[cols|rows|disabled|name|readonly],tt,var,big,iframe[src|title|width|height|allowfullscreen|frameborder]",
+    relative_urls: false,
+    remove_script_host : false,
+    convert_urls : false,
+    mode : "exact", 
+    elements : "art_string",
+    theme : "advanced",
+    plugins : "safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+    theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontselect,fontsizeselect",
+    theme_advanced_buttons2 : "bullist,numlist,|,link,unlink,anchor,image,cleanup,help,code,youtube,|,forecolor,backcolor",
+    theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,iespell,advhr,|,print,|,ltr,rtl,|,fullscreen",    
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_toolbar_align : "left",
+    theme_advanced_statusbar_location : "bottom",
+    theme_advanced_resizing : true,
+    theme_advanced_link_targets : "someframe=Some frame,otherframe=Some other frame",
+    content_css : "",
+    template_external_list_url : "js/template_list.js",
+    external_link_list_url : "js/link_list.js",
+    external_image_list_url : "js/image_list.js",
+    media_external_list_url : "js/media_list.js",
+    template_replace_values : {
+        username : "User",
+        staffid : "991234"
+    }
+});
+</script>
+
+<form role="form" method="post" enctype="multipart/form-data" action="/setup/updatearticle" > 
+<input type="hidden" id="update" name="update" value="true"/>
+<input type="hidden" id="art_id" name="art_id" value="<%= article[0].art_id %>"/>
+<input type="hidden" id="imgurl" name="imgurl" value="<%= article[0].art_imgurl %>"/>
+<table width="100%">
+<tr>
+<td colspan="2">
+    <div class="form-group">
+    <label for="art_name">* Název příspěvku <span>( Min. 5 - max 100 znaků. )</span></label>
+    <input type="text" class="form-control" id="art_name" name="art_name" value="<%= article[0].art_name %>" required="true"/>
+    </div> 
+</tr> 
+<td>
+    <div class="form-group" style="padding-right:10px;">
+    <label for="art_sc_id"><span>*</span>Kategorie:</label>
+    <select name="art_sc_id" id="art_sc_id" class="form-control">
+      <% for (var index in sections){ %>
+           <option value="<%= sections[index].sc_id %>"><%= sections[index].sc_name %></option>
+    <% }; %>
+    </select>
+    </div>
+</td>
+<td>
+    <div class="form-group">
+    <label for="art_subsc_id"><span>*</span>Kategorie 2:</label>
+    <select name="art_subsc_id" id="art_subsc_id" class="form-control">        
+      <% for (var index in subsections){ %>
+           <option value="<%= subsections[index].subsc_id %>"><%= subsections[index].subsc_name %></option>
+    <% }; %>
+    </select>
+    </div>
+</td>
+</tr>
+<tr>
+<td style="width: 50%;">
+<table width="100%">
+<tr>
+<td style="width: 100px;"> 
+<img src="/public/img/uploaded/<%= article[0].art_imgurl %>" width="90" height="90" style="border: 1px solid silver ;"/></td>
+<td valign="top">
+    <div class="form-group" style="padding-right:10px;">
+    <label for="userPhoto">Obrázek <span class="red">( Max 2MB  .JPG | .PNG  )</span></label>
+    <input type="file" class="file" id="art_imgurl" name="art_imgurl" />  
+    </div>         
+</td>    
+</tr>
+</table>    
+</td>
+<td>
+    <div class="form-group">
+    <label for="art_header">
+    <span class="red">*</span>Krátký popis čeho se příspěvek týká <span class="red"> &nbsp;( Min. 10 - max 350 znaků. )</span>
+    </label>
+    <textarea class="form-control" name="art_header" id="art_header"><%= article[0].art_header %></textarea>
+    </div>    
+</td>
+</tr>
+<tr>
+<td colspan="2">
+    <div class="form-group">
+    <label for="art_string"> <span class="red">*</span>Text</label>
+    <textarea name="art_string" id="art_string" style="width: 100%;height: 350px;"><%= article[0].art_string %></textarea> 
+    </div>     
+</td>
+</tr>
+<tr> 
+<td align="right" colspan="2" style="padding-top: 10px;">
+<input  type="button" class="btn btn-default btn-sm"  value="Zpět" onclick="javascript:history.back();"/>&nbsp;
+<button type="submit" class="btn btn-primary btn-sm">
+  <i class="glyphicon glyphicon-floppy-saved"></i>  Uložit
+  </button>  
+</td>
+</tr>
+</table>
+</form>
+<!-- fr .................................................................................. -->
+<script type="text/javascript"> 
+$('#art_imgurl').filestyle({
+                size : 'sm',
+                buttonName : 'btn-primary'
+});           
+var selectmenu=document.getElementById("art_sc_id");
+selectmenu.onchange=function(){ //run some code when "onchange" event fires
+var chosenoption=this.options[this.selectedIndex] //this refers to "selectmenu"
+if (chosenoption.value!="nothing"){
+var ajaxRequest;
+      
+try{
+    ajaxRequest = new XMLHttpRequest();
+} catch (e){
+    // Internet Explorer Browsers
+    try{
+        ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+        try{
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (e){
+            alert("Browser err!");
+            return false;
+        }
+    }
+}            
+var scid = chosenoption.value;       
+var params = "scid=" + scid  + "&ajaxrequest=true";       
+ajaxRequest.open("POST", "/setup/subschelper/", true);
+ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ajaxRequest.setRequestHeader("Content-length", params.length);
+ajaxRequest.setRequestHeader("Connection", "close");
+ajaxRequest.onreadystatechange = function(){
+    if(ajaxRequest.readyState == 4 && ajaxRequest.status == 200){     
+                var ajaxDisplay = document.getElementById('art_subsc_id');
+                ajaxDisplay.innerHTML = ajaxRequest.responseText;               
+        }
+    }
+ajaxRequest.send(params);
+}
+}               
+</script>             
+</div>    
+</div>
+</div>
+</div>
+</div>
+
+<% include setup-footer %>

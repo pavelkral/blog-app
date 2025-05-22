@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Devlog -  <% if(typeof(title) !== 'undefined') {%><%= title %><% } %></title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="<% if(typeof(description) !== 'undefined') {%><%= description %><% } %>" />
+    <meta name="keywords" content="<% if(typeof(keywords) !== 'undefined') {%><%= keywords %><% } %>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-control" content="no-cache" />
+    <meta name="author" content=" devlog@devlog.cz" />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="/public/img/logo2.ico" />
+    <script type="text/javascript" src="/public/lib/jquery/jquery.min.js"></script>
+    <link href = "/public/lib/bootstrap/ts/bootstrap.min.css" rel = "stylesheet">
+     <link href = "/public/css/main.css" rel = "stylesheet">
+    <script type="text/javascript" src="/public/lib/app.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body onload="startTime()">
+<div class = "container" style="border: 0px solid #000000" >
+   <a href="/"> <img src="/public/img/logo.png"  alt="logo.png " style="width: 50px;height: 50px;float: left;" /></a>
+    <div id="bin" style="float: right;margin-top: 12px;font-size: 20px;"></div>
+</div>
+<div class = "navbar navbar-inverse navbar-static-top">
+    <div class = "container">
+        <div  class = "navbar-brand">Devlog 
+        <% if(typeof(subscname) !== 'undefined') {%>
+           - <%= subscname %>
+        <% } %>
+        </div>
+        <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+            <span class = "icon-bar"></span>
+            <span class = "icon-bar"></span>
+            <span class = "icon-bar"></span>
+        </button>
+        <div class = "collapse navbar-collapse navHeaderCollapse">
+            <ul class = "nav navbar-nav navbar-right">
+                <li class = "active"><a href = "/">Log</a></li>
+                <li class = "dropdown">
+                    <a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Projects<b class = "caret"></b></a>
+                    <ul class = "dropdown-menu">
+                        <li><a href = "/projects/">Projects and Demos</a></li>
+                        <li><a href = "/visualisations/">3D modeling</a></li>
+                    </ul>
+                </li>
+                <li class = "dropdown">
+                    <a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Contact<b class = "caret"></b></a>
+                    <ul class = "dropdown-menu">
+                         <li><a href = "/contact/">Contact</a></li>
+                        <li><a href = "/setup/">Setup</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
